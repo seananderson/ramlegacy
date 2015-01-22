@@ -24,3 +24,21 @@ Cache and convert the database:
 library("ramlegacy")
 make_ramlegacy()
 ```
+
+Work with the data:
+
+```{r}
+library("dplyr")
+ram <- src_sqlite("ramlegacy.sqlite3")
+ram
+```
+
+```{r}
+area <- tbl(ram, "area")
+glimpse(area)
+ts <- tbl(ram, "timeseries")
+stock <- tbl(ram, "stock")
+select(stock, stockid, scientificname, commonname, region) %>%
+  inner_join(select(ts, -tsid, -assessid, -stocklong)) %>%
+  glimpse
+```

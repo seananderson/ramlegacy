@@ -41,3 +41,54 @@ Cache and convert the database:
     ## Converting table timeseries_units_views
     ## Converting table timeseries_values_views
     ## Converting table tsmetrics
+
+Work with the data:
+
+    library("dplyr")
+
+    ## 
+    ## Attaching package: 'dplyr'
+    ## 
+    ## The following object is masked from 'package:stats':
+    ## 
+    ##     filter
+    ## 
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+    ram <- src_sqlite("ramlegacy.sqlite3")
+    ram
+
+    ## src:  sqlite 3.8.6 [ramlegacy.sqlite3]
+    ## tbls: area, assessment, assessmethod, assessor, biometrics, bioparams,
+    ##   bioparams_units_views, bioparams_values_views, management,
+    ##   model_results, sqlite_stat1, stock, taxonomy, timeseries,
+    ##   timeseries_units_views, timeseries_values_views, tsmetrics
+
+    area <- tbl(ram, "area")
+    glimpse(area)
+
+    ## Variables:
+    ## $ country           (chr) "Argentina", "Argentina", "Australia", "Aust...
+    ## $ areatype          (chr) "CFP", "CFP", "AFMA", "AFMA", "AFMA", "AFMA"...
+    ## $ areacode          (chr) "ARG-N", "ARG-S", "CASCADE", "ESE", "GAB", "...
+    ## $ areaname          (chr) "Northern Argentina", "Southern Argentina", ...
+    ## $ alternateareaname (chr) NA, NA, NA, NA, NA, "", NA, NA, NA, NA, NA, ...
+    ## $ areaid            (chr) "Argentina-CFP-ARG-N", "Argentina-CFP-ARG-S"...
+
+    ts <- tbl(ram, "timeseries")
+    stock <- tbl(ram, "stock")
+    select(stock, stockid, scientificname, commonname, region) %>%
+      inner_join(select(ts, -tsid, -assessid, -stocklong)) %>%
+      glimpse
+
+    ## Joining by: "stockid"
+
+    ## Variables:
+    ## $ stockid        (chr) "ACADREDGOMGB", "ACADREDGOMGB", "ACADREDGOMGB",...
+    ## $ scientificname (chr) "Sebastes fasciatus", "Sebastes fasciatus", "Se...
+    ## $ commonname     (chr) "Acadian redfish", "Acadian redfish", "Acadian ...
+    ## $ region         (chr) "US East Coast", "US East Coast", "US East Coas...
+    ## $ tsyear         (dbl) 1913, 1914, 1915, 1916, 1917, 1918, 1919, 1920,...
+    ## $ tsvalue        (dbl) 2.37, 2.37, 2.37, 2.37, 2.37, 2.37, 2.37, 2.37,...
