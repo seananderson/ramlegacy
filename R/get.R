@@ -27,7 +27,10 @@ mdb2sql <- function() {
 #' RAM Legacy Stock Stock Assessment Database from \url{http://ramlegacy.org} and
 #' converts the database to a local sqlite3 database named
 #' \code{ramlegacy.sqlite3}. As a byproduct, \code{.csv} versions of each table
-#' are left in the working directory.
+#' are left in the working directory. Note that you must have the utility
+#' \code{mdb-tables} installed and in your path. You can find installation
+#' instructions at \url{http://mdbtools.sourceforge.net}. If you're on OS X and
+#' using homebrew, you can install it with \code{brew install mdbtools}.
 #'
 #' @param zip_file Name of the Access .zip file you'd like to download from
 #'   \url{http://ramlegacy.org}
