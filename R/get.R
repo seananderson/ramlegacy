@@ -1,9 +1,8 @@
-download_dat <- function() {
-  file <- "RLSADB_v2.5_(model_fits_included)_access"
+download_dat <- function(zip_file, acc_file) {
   url <- "https://depts.washington.edu/ramlegac/wordpress/databaseVersions"
-  downloader::download(paste0(url, "/", file, ".zip"), destfile = "temp.zip")
+  downloader::download(paste0(url, "/", zip_file), destfile = "temp.zip")
   unzip("temp.zip");unlink("temp.zip")
-  file.rename("RLSADB v2.5 (model fits included).accdb", "ramlegacy.accdb")
+  file.rename(acc_file, "ramlegacy.accdb")
 }
 
 mdb2sql <- function() {
@@ -25,10 +24,18 @@ mdb2sql <- function() {
 #' Database
 #'
 #' Downloads the latest Microsoft Access version (currently version 2.5) of the
-#' RAM Legacy Stock Stock Assessment Database from http://ramlegacy.org and
+#' RAM Legacy Stock Stock Assessment Database from \url{http://ramlegacy.org} and
 #' converts the database to a local sqlite3 database named
 #' \code{ramlegacy.sqlite3}. As a byproduct, \code{.csv} versions of each table
 #' are left in the working directory.
+#'
+#' @param zip_file Name of the Access .zip file you'd like to download from
+#'   \url{http://ramlegacy.org}
+#' @param acc_file Name of the Access .accdb file inside the zip file you'd like
+#'   to download from \url{http://ramlegacy.org}.
+#'
+#' @return A sqlite3 database named \code{ramlegacy.sqlite3} and \code{.csv}
+#'   files named after each table in the database.
 #'
 #' @export
 #'
@@ -36,7 +43,8 @@ mdb2sql <- function() {
 #' \dontrun{
 #' make_ramlegacy()
 #' }
-make_ramlegacy <- function() {
-  if(!file.exists("ramlegacy.accdb")) download_dat()
+make_ramlegacy <- function(zip_file = "RLSADB_v2.5_(model_fits_included)_access.zip",
+  acc_file = "RLSADB v2.5 (model fits included).accdb") {
+  if(!file.exists("ramlegacy.accdb")) download_dat(zip_file, acc_file)
   mdb2sql()
 }

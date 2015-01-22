@@ -5,13 +5,26 @@
 \title{Make a local sqlite3 database with the RAM Legacy Stock Stock Assessment
 Database}
 \usage{
-make_ramlegacy()
+make_ramlegacy(zip_file = "RLSADB_v2.5_(model_fits_included)_access.zip",
+  acc_file = "RLSADB v2.5 (model fits included).accdb")
+}
+\arguments{
+\item{zip_file}{Name of the Access .zip file you'd like to download from
+\url{http://ramlegacy.org}}
+
+\item{acc_file}{Name of the Access .accdb file inside the zip file you'd like
+  to download from \url{http://ramlegacy.org}.}
+}
+\value{
+A sqlite3 database named \code{ramlegacy.sqlite3} and \code{.csv}
+  files named after each table in the database.
 }
 \description{
-Downloads the latest Microsoft Access version of the RAM Legacy Stock Stock
-Assessment Database from http://ramlegacy.org and converts the database to
-a local sqlite3 database named \code{ramlegacy.sqlite3}. As a byproduct,
-\code{.csv} versions of each table are left in the working directory.
+Downloads the latest Microsoft Access version (currently version 2.5) of the
+RAM Legacy Stock Stock Assessment Database from \url{http://ramlegacy.org} and
+converts the database to a local sqlite3 database named
+\code{ramlegacy.sqlite3}. As a byproduct, \code{.csv} versions of each table
+are left in the working directory.
 }
 \examples{
 \dontrun{
