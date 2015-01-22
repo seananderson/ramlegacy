@@ -2,7 +2,7 @@
 
 This package does one thing right now: it downloads the latest Microsoft Access version of the [RAM Legacy Stock Assessment Database](http://ramlegacy.org) (version 2.5) and converts it to a local sqlite3 database. This makes it easy to [work with dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/databases.html), for example. The `make_ramlegacy()` function also leaves a copy of `.csv` files for each table in the database in the R working directory if you'd prefer to work with those. Eventually I may add additional functionality.
 
-Note that you must have the utility `mdb-tables` installed and in your path. You can find installation instructions at <http://mdbtools.sourceforge.net>. If you're on OS X and using homebrew, you can install it with `brew install mdbtools`.
+**Note that you must have the utility `mdb-tables` installed** and in your path. This utility provides tools for extracting Access databases. You can find installation instructions at <http://mdbtools.sourceforge.net>. If you're on OS X and using homebrew, you can install it with `brew install mdbtools`.
 
 ### Example use
 
