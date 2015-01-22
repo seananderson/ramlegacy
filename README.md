@@ -1,8 +1,6 @@
-# Download and convert the RAM Legacy Stock Assessment Database in R
+# Import the RAM Legacy Stock Assessment Database into R
 
-This package does one thing right now: it downloads the latest Microsoft Access version of the [RAM Legacy Stock Assessment Database](http://ramlegacy.org) (version 2.5) and converts it to a local sqlite3 database. This makes it easy to [work with dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/databases.html), for example. The `make_ramlegacy()` function also leaves a copy of `.csv` files for each table in the database in the R working directory.
-
-Perhaps eventually I'll add additional functionality, but for now I just wanted a reproducible way to bring the latest copy of the database into a local (non-Access) database that I could use with R.
+This package does one thing right now: it downloads the latest Microsoft Access version of the [RAM Legacy Stock Assessment Database](http://ramlegacy.org) (version 2.5) and converts it to a local sqlite3 database. This makes it easy to [work with dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/databases.html), for example. The `make_ramlegacy()` function also leaves a copy of `.csv` files for each table in the database in the R working directory if you'd prefer to work with those. Eventually I may add additional functionality.
 
 ### Example use
 
@@ -49,7 +47,7 @@ Work with the data:
 ```r
 library("dplyr")
 ram <- src_sqlite("ramlegacy.sqlite3")
-ram
+ram # see the available tables
 ```
 
 ```
@@ -59,6 +57,8 @@ ram
 ##   model_results, sqlite_stat1, stock, taxonomy, timeseries,
 ##   timeseries_units_views, timeseries_values_views, tsmetrics
 ```
+
+Access the `area` table:
 
 
 ```r
@@ -76,11 +76,14 @@ glimpse(area)
 ## $ areaid            (chr) "Argentina-CFP-ARG-N", "Argentina-CFP-ARG-S"...
 ```
 
+Join the time series `ts` and `stock` tables on the `stockid` column:
+
+
 ```r
 ts <- tbl(ram, "timeseries")
 stock <- tbl(ram, "stock")
 select(stock, stockid, scientificname, commonname, region) %>%
-  inner_join(select(ts, -tsid, -assessid, -stocklong)) %>%
+  inner_join(ts) %>%
   glimpse
 ```
 
@@ -94,6 +97,9 @@ select(stock, stockid, scientificname, commonname, region) %>%
 ## $ scientificname (chr) "Sebastes fasciatus", "Sebastes fasciatus", "Se...
 ## $ commonname     (chr) "Acadian redfish", "Acadian redfish", "Acadian ...
 ## $ region         (chr) "US East Coast", "US East Coast", "US East Coas...
+## $ assessid       (chr) "NEFSC-ACADREDGOMGB-1913-2007-MILLER", "NEFSC-A...
+## $ stocklong      (chr) "Acadian redfish Gulf of Maine / Georges Bank",...
+## $ tsid           (chr) "BdivBmsytouse-dimensionless", "BdivBmsytouse-d...
 ## $ tsyear         (dbl) 1913, 1914, 1915, 1916, 1917, 1918, 1919, 1920,...
 ## $ tsvalue        (dbl) 2.37, 2.37, 2.37, 2.37, 2.37, 2.37, 2.37, 2.37,...
 ```
