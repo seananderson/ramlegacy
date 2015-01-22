@@ -1,0 +1,26 @@
+---
+output:
+  md_document
+---
+
+# Download and convert the RAM Legacy Stock Assessment Database in R
+
+This package does one thing right now: it downloads the latest Microsoft Access version of the [RAM Legacy Stock Assessment Database](http://ramlegacy.org) (version 2.5) and converts it to a local sqlite3 database. This makes it easy to [work with dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/databases.html), for example. The `make_ramlegacy()` function also leaves a copy of `.csv` files for each table in the database in the R working directory.
+
+Perhaps eventually I'll add additional functionality, but for now I just wanted a reproducible way to bring the latest copy of the database into a local (non-Access) database that I could use with R.
+
+### Example use
+
+Install the package:
+
+```{r, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("seananderson/ramlegacy")
+```
+
+Cache and convert the database:
+
+```{r}
+library("ramlegacy")
+make_ramlegacy()
+```
