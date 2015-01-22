@@ -4,3 +4,4 @@
 *.csv
 *.sqlite3
 *.accdb
+cache/
