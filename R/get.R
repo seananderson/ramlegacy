@@ -40,6 +40,8 @@ mdb2sql <- function() {
 #' @return A sqlite3 database named \code{ramlegacy.sqlite3} and \code{.csv}
 #'   files named after each table in the database.
 #'
+#' @importFrom utils read.csv unzip
+#'
 #' @export
 #'
 #' @examples

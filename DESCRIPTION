@@ -1,8 +1,8 @@
 Package: ramlegacy
 Type: Package
 Title: Download and cache the RAM Legacy Stock Assessment Database
-Version: 0.0.2
-Date: 2015-12-01
+Version: 0.0.3
+Date: 2017-02-01
 Authors@R: person(c("Sean", "C."), "Anderson", email =
     "sean@seananderson.ca", role = c("aut", "cre"))
 Maintainer: Sean C. Anderson <sean@seananderson.ca>
