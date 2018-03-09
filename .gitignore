@@ -5,3 +5,4 @@
 *.sqlite3
 *.accdb
 cache/
+README_cache

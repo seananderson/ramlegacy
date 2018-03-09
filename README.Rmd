@@ -1,10 +1,25 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 # Import the RAM Legacy Stock Assessment Database into R
 
 [![Travis-CI Build Status](https://travis-ci.org/seananderson/ramlegacy.svg?branch=master)](https://travis-ci.org/seananderson/ramlegacy)
 
-This package does one thing right now: it downloads the latest Microsoft Access version of the [RAM Legacy Stock Assessment Database](http://ramlegacy.org) (version 3.0) and converts it to a local sqlite3 database. This makes it easy to [work with dplyr](http://cran.r-project.org/web/packages/dplyr/vignettes/databases.html), for example. The `make_ramlegacy()` function also leaves a copy of `.csv` files for each table in the database in the R working directory if you'd prefer to work with those. Eventually I may add additional functionality.
+This package does one thing: it downloads a Microsoft Access copy of the [RAM Legacy Stock Assessment Database](http://ramlegacy.org) and converts it to a local sqlite3 database. This makes it easy to [work with dplyr/dbplyr](https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html), for example. The `make_ramlegacy()` function also leaves a copy of `.csv` files for each table in the database in the R working directory if you'd prefer to work with those.
 
-**Note that you must have the utility `mdb-tables` installed** and in your path. This utility provides tools for extracting Access databases. You can find installation instructions at <http://mdbtools.sourceforge.net>. If you're on OS X and using homebrew, you can install it with `brew install mdbtools`.
+**Note that you must have the utility `mdb-tables` installed** and in your path from `mdbtools`. This utility provides tools for extracting Access databases. You can find installation instructions at <http://mdbtools.sourceforge.net>. If you're on OS X and using homebrew, you can install it with `brew install mdbtools`.
 
 ### Example use
 
@@ -38,8 +53,7 @@ ram # see the available tables
 Access the `area` table:
 
 ```{r}
-area <- tbl(ram, "area")
-glimpse(area)
+tbl(ram, "area")
 ```
 
 Join the time series `ts` and `stock` tables on the `stockid` column:
@@ -48,6 +62,19 @@ Join the time series `ts` and `stock` tables on the `stockid` column:
 ts <- tbl(ram, "timeseries")
 stock <- tbl(ram, "stock")
 select(stock, stockid, scientificname, commonname, region) %>%
-  inner_join(ts) %>%
-  glimpse
+  inner_join(ts)
+```
+
+Note that because you are working with dplyr and a database, you will need to use `dplyr::collect()` once you want to load the data into a local data frame. For example:
+
+```{r}
+tbl(ram, "area") %>% 
+  collect()
+```
+
+For safety, you may want to use `dplyr::collect()` to return all rows of data, not just the minimum default number. In this case it won't make a difference.
+
+```{r}
+tbl(ram, "area") %>% 
+  collect(n = Inf)
 ```
