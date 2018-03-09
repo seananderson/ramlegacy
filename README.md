@@ -144,9 +144,9 @@ tbl(ram, "area") %>%
 #> # ... with 265 more rows
 ```
 
-For safety, you may want to use `dplyr::collect()` to return all rows of
-data, not just the minimum default number. In this case it won’t make a
-difference.
+For safety, you may want to use `dplyr::collect(n = Inf)` to return all
+rows of data, not just the minimum default number. In this case it won’t
+make a difference.
 
 ``` r
 tbl(ram, "area") %>% 
