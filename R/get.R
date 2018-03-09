@@ -27,7 +27,7 @@ mdb2sql <- function() {
 #' RAM Legacy Stock Stock Assessment Database from \url{http://ramlegacy.org} and
 #' converts the database to a local sqlite3 database named
 #' \code{ramlegacy.sqlite3}. As a byproduct, \code{.csv} versions of each table
-#' are left in the working directory. Note that you must have the utility
+#' are left in the working directory. Note that you must have the executable
 #' \code{mdb-tables} installed and in your path. You can find installation
 #' instructions at \url{http://mdbtools.sourceforge.net}. If you're on OS X and
 #' using homebrew, you can install it with \code{brew install mdbtools}.
@@ -48,8 +48,8 @@ mdb2sql <- function() {
 #' \dontrun{
 #' make_ramlegacy()
 #' }
-make_ramlegacy <- function(zip_file = "RLSADB_v3.0_(assessment_data_only)_access.zip",
-  acc_file = "RLSADB v3.0 (assessment data only).accdb") {
+make_ramlegacy <- function(zip_file = "RLSADB_v4.3_(assessment_data_only)_access.zip",
+  acc_file = "RLSADB_v4.3_(assessment_data_only).accdb") {
   if(!file.exists("ramlegacy.accdb")) download_dat(zip_file, acc_file)
   mdb2sql()
 }

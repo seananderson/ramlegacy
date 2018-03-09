@@ -5,8 +5,8 @@
 \title{Make a local sqlite3 database with the RAM Legacy Stock Stock Assessment
 Database}
 \usage{
-make_ramlegacy(zip_file = "RLSADB_v3.0_(assessment_data_only)_access.zip",
-  acc_file = "RLSADB v3.0 (assessment data only).accdb")
+make_ramlegacy(zip_file = "RLSADB_v4.3_(assessment_data_only)_access.zip",
+  acc_file = "RLSADB_v4.3_(assessment_data_only).accdb")
 }
 \arguments{
 \item{zip_file}{Name of the Access .zip file you'd like to download from
@@ -34,4 +34,3 @@ using homebrew, you can install it with \code{brew install mdbtools}.
 make_ramlegacy()
 }
 }
-
