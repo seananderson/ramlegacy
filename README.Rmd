@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 
 [![Travis-CI Build Status](https://travis-ci.org/seananderson/ramlegacy.svg?branch=master)](https://travis-ci.org/seananderson/ramlegacy)
 
+**Please use Carl Boettiger and Gupta Kshitiz's ramlegacy package https://github.com/ropensci/ramlegacy instead.**
+
 This package does one thing: it downloads a Microsoft Access copy of the [RAM Legacy Stock Assessment Database](http://ramlegacy.org) and converts it to a local sqlite3 database. This makes it easy to [work with dplyr/dbplyr](https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html), for example. The `make_ramlegacy()` function also leaves a copy of `.csv` files for each table in the database in the R working directory if you'd prefer to work with those.
 
 **Note that you must have the utility `mdb-tables` installed** and in your path from `mdbtools`. This utility provides tools for extracting Access databases. You can find installation instructions at <http://mdbtools.sourceforge.net>. If you're on OS X and using homebrew, you can install it with `brew install mdbtools`.

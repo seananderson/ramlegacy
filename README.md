@@ -1,9 +1,14 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 Import the RAM Legacy Stock Assessment Database into R
 ======================================================
 
 [![Travis-CI Build
 Status](https://travis-ci.org/seananderson/ramlegacy.svg?branch=master)](https://travis-ci.org/seananderson/ramlegacy)
+
+**Please use Carl Boettiger and Gupta Kshitiz’s ramlegacy package
+<a href="https://github.com/ropensci/ramlegacy" class="uri">https://github.com/ropensci/ramlegacy</a>
+instead.**
 
 This package does one thing: it downloads a Microsoft Access copy of the
 [RAM Legacy Stock Assessment Database](http://ramlegacy.org) and
@@ -17,8 +22,9 @@ if you’d prefer to work with those.
 **Note that you must have the utility `mdb-tables` installed** and in
 your path from `mdbtools`. This utility provides tools for extracting
 Access databases. You can find installation instructions at
-<http://mdbtools.sourceforge.net>. If you’re on OS X and using homebrew,
-you can install it with `brew install mdbtools`.
+<a href="http://mdbtools.sourceforge.net" class="uri">http://mdbtools.sourceforge.net</a>.
+If you’re on OS X and using homebrew, you can install it with
+`brew install mdbtools`.
 
 ### Example use
 
