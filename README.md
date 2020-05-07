@@ -5,6 +5,8 @@ Import the RAM Legacy Stock Assessment Database into R
 
 [![Travis-CI Build
 Status](https://travis-ci.org/seananderson/ramlegacy.svg?branch=master)](https://travis-ci.org/seananderson/ramlegacy)
+[![Lifecycle:
+superseded](https://img.shields.io/badge/lifecycle-superseded-orange.svg)](https://www.tidyverse.org/lifecycle/#superseded)
 
 **Please use Carl Boettiger and Gupta Kshitiz’s ramlegacy package
 <a href="https://github.com/ropensci/ramlegacy" class="uri">https://github.com/ropensci/ramlegacy</a>
